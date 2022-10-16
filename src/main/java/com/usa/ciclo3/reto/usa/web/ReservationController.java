@@ -2,6 +2,8 @@ package com.usa.ciclo3.reto.usa.web;
 
 
 import com.usa.ciclo3.reto.usa.model.Reservation;
+import com.usa.ciclo3.reto.usa.model.dto.StatusAcount;
+import com.usa.ciclo3.reto.usa.model.dto.TopClients;
 import com.usa.ciclo3.reto.usa.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,6 +46,23 @@ public class ReservationController {
     public boolean delete(@PathVariable("id") int id){
         return reservationService.deleteReservation(id);
     }
+
+    @GetMapping("/report-dates/{dateA}/{dateB}")
+    public List<Reservation> getByDates(@PathVariable("dateA")String dateA,@PathVariable("dateB")String dateB){
+        return reservationService.getReservationByPeriod(dateA, dateB);
+    }
+
+    @GetMapping("/report-status")
+
+    public StatusAcount getByStatus(){
+        return reservationService.getReportByStatus();
+    }
+
+    @GetMapping("/report-clients")
+    public List<TopClients> getTopClients(){
+        return reservationService.getTopclients();
+    }
+
 
 
 }

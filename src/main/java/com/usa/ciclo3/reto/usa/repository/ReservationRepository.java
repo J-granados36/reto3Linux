@@ -7,6 +7,7 @@ import com.usa.ciclo3.reto.usa.repository.crud.ReservationCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,5 +32,21 @@ public class ReservationRepository {
     public void delete(Reservation reservation){
         reservationCrudRepository.delete(reservation);
     }
+
+
+
+    public List<Object[]> getTopClients(){
+        return reservationCrudRepository.countTotalReservationByClient();
+    }
+
+    public List<Reservation> getReservationPeriod(Date dateOne, Date dateTow){
+        return reservationCrudRepository.findAllByStartDateAfterAndStartDateBefore(dateOne,dateTow);
+    }
+
+    public List<Reservation> getStatusReport(String status){
+        return reservationCrudRepository.findAllByStatus(status);
+    }
+
+
 
 }

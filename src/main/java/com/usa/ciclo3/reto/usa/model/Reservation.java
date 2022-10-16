@@ -31,6 +31,8 @@ public class Reservation implements Serializable {
     @JsonIgnoreProperties("reservation")
     private Score score;
 
+
+
     public Integer getIdReservation() {
         return idReservation;
     }
